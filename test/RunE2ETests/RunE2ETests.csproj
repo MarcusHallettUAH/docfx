@@ -75,12 +75,12 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="PrepareForE2ETests">
+  <Target Name="PrepareForE2ETests" BeforeTargets="PrepareForBuild">
     <Exec Command="PrepareForE2ETests.cmd">
       <Output PropertyName="ExecExitCode" TaskParameter="ExitCode" />
     </Exec>
   </Target>
-  <Target Name="BuildSite" DependsOnTargets="PrepareForE2ETests">
+  <Target Name="BuildSite">
     <Exec Command="$(OutputPath)docfx.exe ..\..\..\docfx-seed\docfx.json" />
   </Target>
   <Target Name="XunitTest" AfterTargets="AfterBuild" DependsOnTargets="BuildSite">

@@ -30,6 +30,7 @@ namespace Microsoft.DocAsCode.E2E.Tests
 
             Driver = new FirefoxDriver();
             Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            Driver.Manage().Window.Maximize();
 
             try
             {

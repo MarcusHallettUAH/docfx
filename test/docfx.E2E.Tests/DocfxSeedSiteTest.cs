@@ -4,6 +4,7 @@
 namespace Microsoft.DocAsCode.E2E.Tests
 {
     using System.Collections.Generic;
+    using System.Drawing.Imaging;
 
     using OpenQA.Selenium;
     using Xunit;
@@ -36,6 +37,7 @@ namespace Microsoft.DocAsCode.E2E.Tests
             Assert.NotEmpty(_driver.FindElements(By.XPath("//article[@id='_content']")));
 
             // check "Improve this Doc" button
+            ((ITakesScreenshot)_driver).GetScreenshot().SaveAsFile("capture.jpg", ImageFormat.Jpeg);
             _driver.FindElement(By.LinkText("Improve this Doc")).Click();
             Assert.Contains("GitHub", _driver.Title);
             _driver.Navigate().Back();
